@@ -1,5 +1,7 @@
 package org.lessons.java;
 
+import java.math.BigDecimal;
+
 public class Smartphone extends Product{
 
     //ATTRIBUTES
@@ -8,10 +10,12 @@ public class Smartphone extends Product{
 
     //CONSTRUCTORS
 
-    public Smartphone(int codeIMEI, int ram, String name, String description, double price, int iva){
+    public Smartphone(int codeIMEI, int ram, String name, String description, BigDecimal price, BigDecimal iva){
         super(name, description, price, iva);
         this.codeIMEI = codeIMEI;
         this.ram = ram;
     }
+
+
 
 }

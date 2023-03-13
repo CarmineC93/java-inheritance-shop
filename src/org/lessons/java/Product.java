@@ -1,9 +1,11 @@
 package org.lessons.java;
 
-import java.text.DecimalFormat;
 import java.util.Random;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-    public class Product {
+
+public class Product {
 
         Random rnd = new Random();
     /*
@@ -16,15 +18,15 @@ import java.util.Random;
         private int code;
         private String name;
         private String description;
-        private double price;  // REFACTORING : CAMBIARE IN BIGDECIMAL
-        private int iva;   // REFACTORING : CAMBIARE IN BIGDECIMAL
+        private BigDecimal price;
+        private BigDecimal iva;   // REFACTORING : CAMBIARE IN BIGDECIMAL
 
         //CONSTRUCTORS
         public Product() {
             code = rnd.nextInt(1,10000);
         }
 
-        public Product(String name, String description, double price, int iva){
+        public Product(String name, String description, BigDecimal price, BigDecimal iva){
             code = rnd.nextInt(1,10000);
             this.name = name;
             this.description = description;
@@ -48,27 +50,24 @@ import java.util.Random;
         public void setDescription(String description) {
             this.description = description;
         }
-        public double getPrice() {
+        public  BigDecimal getPrice() {
             return price;
         }
-        public void setPrice(double price) {
+        public void setPrice(BigDecimal price) {
             this.price = price;
         }
-        public int getIva() {
+        public BigDecimal getIva() {
             return iva;
         }
-        public void setIva(int iva) {
+        public void setIva(BigDecimal iva) {
             this.iva = iva;
         }
 
         //METHOD
-        public String priceWithIva() {
-            double taxedPrice = price + (price * iva / 100);
-            DecimalFormat df = new DecimalFormat("0.00");
-            return  df.format(taxedPrice);
+        public BigDecimal priceWithIva() {
+            BigDecimal ivaSulPrezzo = price.multiply(iva);
+            return price.add(ivaSulPrezzo).setScale(2, RoundingMode.HALF_EVEN);
         }
-        public String priceWithoutIva() {
-            DecimalFormat df = new DecimalFormat("0.00");
-            return df.format(price);
-        }
+
+
 }
