@@ -65,7 +65,19 @@ public class Product {
         }
 
         //METHOD
-        public BigDecimal priceWithIva() {
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "code=" + code +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", iva=" + iva +
+                '}';
+    }
+
+    public BigDecimal priceWithIva() {
             BigDecimal priceWithIva = price.multiply(iva);
             return price.add(priceWithIva).setScale(2, RoundingMode.HALF_EVEN);
         }
@@ -74,7 +86,6 @@ public class Product {
         static int maxCapacityCart = 5;
         public static Product[] productsCart = new Product[maxCapacityCart];
         static int counter = -1;
-        //METHOD
 
 
         public static int contatorItem(){

@@ -39,7 +39,6 @@ public class Cart {
                 Headphones marshall = new Headphones("black", true, "Cuffie Marshall", "Cuffie Marshall senza cavo wireless ecc...", new BigDecimal("150.00"), new BigDecimal("22"));
                 Product.contatorItem();
                 Product.addToCart(marshall);
-
                 }
 
 
