@@ -1,5 +1,6 @@
 package org.lessons.java;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,7 +20,7 @@ public class Product {
         private String name;
         private String description;
         private BigDecimal price;
-        private BigDecimal iva;   // REFACTORING : CAMBIARE IN BIGDECIMAL
+        private BigDecimal iva;
 
         //CONSTRUCTORS
         public Product() {
@@ -65,9 +66,34 @@ public class Product {
 
         //METHOD
         public BigDecimal priceWithIva() {
-            BigDecimal ivaSulPrezzo = price.multiply(iva);
-            return price.add(ivaSulPrezzo).setScale(2, RoundingMode.HALF_EVEN);
+            BigDecimal priceWithIva = price.multiply(iva);
+            return price.add(priceWithIva).setScale(2, RoundingMode.HALF_EVEN);
         }
+
+
+        static int maxCapacityCart = 5;
+        public static Product[] productsCart = new Product[maxCapacityCart];
+        static int counter = -1;
+        //METHOD
+
+
+        public static int contatorItem(){
+            if(counter <= maxCapacityCart){
+                counter++;
+            }else{
+                maxCapacityCart++; //not working
+                counter++;
+            }
+            return counter;
+        }
+
+
+        public static void addToCart(Product product){
+                productsCart[counter] = product;
+
+            System.out.println(Arrays.toString(productsCart));
+        }
+
 
 
 }
