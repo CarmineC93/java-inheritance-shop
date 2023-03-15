@@ -39,13 +39,13 @@ public class Cart {
         boolean fidelity = scan.nextLine().equalsIgnoreCase("s");
         // calcolo il totale
         BigDecimal totale = new BigDecimal("0.00");
-        for (Product prod : productsCart) {
+        for (Product prod:productsCart) {
             if (fidelity) {
                 // uso il prezzo scontato
                 totale = totale.add(prod.getDiscountedPrice(true));
             } else {
                 // uso il prezzo normale
-                totale = totale.add(prod.getDiscountedPrice(true));
+                totale = totale.add(prod.priceWithIva());
             }
         }
         return totale.setScale(2, RoundingMode.HALF_EVEN);
