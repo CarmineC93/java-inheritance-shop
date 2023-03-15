@@ -14,4 +14,24 @@ public class Tv  extends Product{
         this.smart= smart;
     }
 
+    //METHODS
+    @Override
+    public String toString(){
+        return "Tv{"+
+                super.toString() + '\'' +
+                "inches= " + inches +
+                ", smart= " + smart +
+                '}';
+    }
+
+    @Override
+    public BigDecimal getDiscountedPrice(boolean withIva){
+        BigDecimal priceToDiscount = withIva ? priceWithIva() : getPrice();
+        if(!smart){
+            return priceToDiscount.subtract(priceToDiscount.multiply(new BigDecimal("0.05")));
+        } else{
+            return super.getDiscountedPrice(withIva);
+        }
+    }
+
 }

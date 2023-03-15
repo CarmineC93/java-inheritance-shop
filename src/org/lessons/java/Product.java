@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Scanner;
 
 
 public class Product {
@@ -74,35 +75,20 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", iva=" + iva +
+                ", prezzo ivato=" + priceWithIva() +
                 '}';
     }
 
-    public BigDecimal priceWithIva() {
+        public BigDecimal priceWithIva() {
             BigDecimal priceWithIva = price.multiply(iva);
             return price.add(priceWithIva).setScale(2, RoundingMode.HALF_EVEN);
         }
 
 
-        static int maxCapacityCart = 5;
-        public static Product[] productsCart = new Product[maxCapacityCart];
-        static int counter = -1;
-
-
-        public static int contatorItem(){
-            if(counter <= maxCapacityCart){
-                counter++;
-            }else{
-                maxCapacityCart++; //not working
-                counter++;
-            }
-            return counter;
-        }
-
-
-        public static void addToCart(Product product){
-                productsCart[counter] = product;
-
-            System.out.println(Arrays.toString(productsCart));
+        //method to calc discount
+        public BigDecimal getDiscountedPrice(boolean withIva){
+            BigDecimal priceToDiscount = withIva ? priceWithIva() : price;
+            return price.subtract(price.multiply(new BigDecimal("0.02")));
         }
 
 
